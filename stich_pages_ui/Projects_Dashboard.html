@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#313030",
+            "surface-bright": "#3a3939",
+            "surface-container": "#201f1f",
+            "background": "#131313",
+            "tertiary-fixed-dim": "#00daf3",
+            "on-background": "#e5e2e1",
+            "secondary-fixed-dim": "#c7bfff",
+            "tertiary": "#00daf3",
+            "outline": "#948da2",
+            "on-tertiary": "#00363d",
+            "surface": "#131313",
+            "error-container": "#93000a",
+            "on-surface": "#e5e2e1",
+            "surface-variant": "#353534",
+            "on-secondary": "#2c148e",
+            "on-secondary-fixed": "#180065",
+            "surface-container-lowest": "#0e0e0e",
+            "primary-fixed": "#e8deff",
+            "on-primary": "#370096",
+            "on-error-container": "#ffdad6",
+            "surface-container-low": "#1c1b1b",
+            "primary-container": "#5d21df",
+            "on-primary-fixed-variant": "#4f00d0",
+            "surface-container-highest": "#353534",
+            "secondary-container": "#4635a7",
+            "secondary": "#c7bfff",
+            "on-primary-fixed": "#20005f",
+            "on-surface-variant": "#cbc3d9",
+            "error": "#ffb4ab",
+            "tertiary-fixed": "#9cf0ff",
+            "on-tertiary-fixed": "#001f24",
+            "on-tertiary-fixed-variant": "#004f58",
+            "on-error": "#690005",
+            "surface-container-high": "#2a2a2a",
+            "on-secondary-fixed-variant": "#4433a4",
+            "primary": "#cdbdff",
+            "surface-dim": "#131313",
+            "outline-variant": "#494456",
+            "inverse-surface": "#e5e2e1",
+            "primary-fixed-dim": "#cdbdff",
+            "surface-tint": "#cdbdff",
+            "tertiary-container": "#005d68",
+            "inverse-primary": "#6833ea",
+            "on-tertiary-container": "#00dcf5",
+            "secondary-fixed": "#e5deff",
+            "on-secondary-container": "#b8afff",
+            "on-primary-container": "#cebfff"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .glass-panel {
+      background: rgba(53, 53, 52, 0.6);
+      backdrop-filter: blur(24px);
+    }
+    .signature-texture {
+      background: linear-gradient(135deg, #cdbdff 0%, #5d21df 100%);
+    }
+    .card-hover:hover {
+      transform: rotate(2deg) scale(1.02);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-zinc-950 flex flex-col h-full p-4 gap-2 z-40">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full signature-texture flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">movie_filter</span>
+</div>
+<div>
+<h1 class="text-lg font-black tracking-tighter text-violet-600 dark:text-violet-400">VTracker</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500">Studio Edition</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+        Dashboard
+      </a>
+<a class="flex items-center gap-3 px-4 py-3 text-violet-600 dark:text-violet-400 bg-slate-200/50 dark:bg-zinc-800/50 rounded-full font-medium text-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">movie_filter</span>
+        Projects
+      </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm" href="#">
+<span class="material-symbols-outlined">view_timeline</span>
+        Timeline
+      </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+        Assets
+      </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm" href="#">
+<span class="material-symbols-outlined">group</span>
+        Team
+      </a>
+</nav>
+<div class="mt-auto pt-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm" href="#">
+<span class="material-symbols-outlined">help</span>
+        Help
+      </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm" href="#">
+<span class="material-symbols-outlined">archive</span>
+        Archive
+      </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar Anchor -->
+<header class="w-full sticky top-0 z-30 bg-slate-50/60 dark:bg-zinc-950/60 backdrop-blur-xl flex items-center justify-between px-8 py-4 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-lg">search</span>
+</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search projects..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 dark:text-zinc-400 hover:bg-slate-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 dark:text-zinc-400 hover:bg-slate-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest ml-2 cursor-pointer active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="professional male portrait with cinematic lighting and dark studio background, wearing a simple black t-shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk8T6xIaCUj70CRkeGUKmU1jQ5VUeTynJ_TivQ8XFT3pJnFPCqdfPVUtdKpNKmtPKNxsAElg1Ba-SFgcVr0wJgjgKj48rS74WF8mMr5ExQ6B6Fy0jozVV6XNmnILjs8nJgggWmL6oUDDUIFcJBmpah0YdFSbaoN7tBZYWr3BYHaLKgYpktMEVhjMYzOINQc2NcD4MQ5ln5czswYQs81tP-0UbckF_-IWa0n95bmbZepz0uBQheDOnxvCElUXsYe9M_wLQxoQnoQEo"/>
+</div>
+</div>
+</header>
+<div class="p-8">
+<!-- Header Actions Area -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-1">
+<h2 class="text-4xl font-extrabold tracking-tighter text-on-surface">Active Projects</h2>
+<p class="text-on-surface-variant font-medium">Manage your production pipeline and editorial scripts.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-6 py-3 bg-surface-container-high text-on-surface font-semibold rounded-full hover:bg-surface-container-highest transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">data_object</span>
+            Import JSON Script
+          </button>
+<button class="flex items-center gap-2 px-8 py-3 signature-texture text-on-primary font-bold rounded-full shadow-lg shadow-primary-container/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined font-bold">add</span>
+            New Project
+          </button>
+</div>
+</section>
+<!-- Projects Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Project Card 1: Featured -->
+<div class="xl:col-span-2 group relative rounded-lg overflow-hidden bg-surface-container-low card-hover cursor-pointer border border-white/5 shadow-2xl">
+<div class="aspect-[21/9] w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="dramatic cinematic wide shot of a futuristic cityscape at night with neon lights reflecting on wet surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFlYpL5YWSwNhTWSO4nn_ctZ2o8sS1CQQlzsTVnLDVRFJxLT3QFAMXP9m297v8A6z0kkMimCqPWP510w43vz6BDaq2ts5b_ZZgEdNxPN8G3bIgAbGnZBL85Josv-DnriwP77AsIunKOYY1yxLSeTMvwH3gjze--wbCYp1N0g-iZy3zY4XvStVYLkPrvzf6s7kVlFWhyZt0VOPU0UyDEHklcHbJbeEbCR6O6LuH7tSYRPOE_pmE1XEZF4Eex30enraVtS9BTBtS8KA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+</div>
+<div class="absolute top-4 right-4 z-10">
+<button class="p-2 glass-panel text-on-surface rounded-full hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
+<div class="space-y-2">
+<span class="px-3 py-1 bg-tertiary text-on-tertiary text-[10px] font-bold rounded-full uppercase tracking-widest">In Progress</span>
+<h3 class="text-3xl font-bold text-on-surface leading-tight">Neon Horizon: Director's Cut</h3>
+<div class="flex items-center gap-4 text-on-surface-variant text-sm font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">movie_edit</span> 142 Scenes</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 42m 12s</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">group</span> 8 Editors</span>
+</div>
+</div>
+<div class="w-16 h-16 glass-panel rounded-full flex items-center justify-center border border-white/10 text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group bg-surface-container rounded-lg p-6 flex flex-col justify-between border border-white/5 card-hover shadow-xl relative">
+<div class="flex justify-between items-start mb-12">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="space-y-4">
+<div>
+<h3 class="text-xl font-bold text-on-surface">The Alpine Session</h3>
+<p class="text-on-surface-variant text-sm mt-1">Experimental mountain drone footage and ambient soundscapes.</p>
+</div>
+<div class="h-[1px] w-full bg-outline-variant/10"></div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="headshot of a man with dark hair and a beard, neutral studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJsUOmjbqOTJ0pSHfhKaNboiN33NwbTcRAAbWKphBt8n7phE1XoDIsyPJNiw0EuoNiCwEl6snXah-5D3GZ0iCD1EZEyQHG1Xy5LSdBXGPVDTvc5UZN6OilGaQWispqe28V-TIbUSY7Q6ra4E71hXbgQd0jRJm67steK2nOqe7JlFzeEPKsVfuen6xU-gUiCrvYB4tnQDXja1cO6-X2p--U8q-3_-IUqMPzntuBxzsbMmSanHmPEjkVnNfuX956cH5Sz-zi4Z89YUg"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a smiling woman with glasses and wavy hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs-zeppPiS5dyIK-nxXus495gInLJS814sUNamGAzAI7XwWZySaOHAnanYcoSAZ6D7kfFS3uYFYHzoA7IPljrV_en5dsZZfzr_sJVPo8vTBo0f2HftyxU0LaaIqpopf0_p_zagXS2uXETCB7guQ070ZEDYzpA5dwwzFSyx7IvKdKHjK-897TId9zDEz8U8nih5tm34uXikJS5NviGJKCvif2Fc5SPrnND9rkIAo3XaMszs3tfX4pJM4OO1n8kbam2KHQ0Y9zRYH9Y"/>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border-2 border-surface-container flex items-center justify-center text-[10px] font-bold text-on-surface-variant">
+                  +3
+                </div>
+</div>
+<span class="text-xs font-bold text-tertiary">34 SCENES</span>
+</div>
+</div>
+<div class="mt-6">
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-2/3 signature-texture"></div>
+</div>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group bg-surface-container rounded-lg p-6 flex flex-col justify-between border border-white/5 card-hover shadow-xl">
+<div class="flex justify-between items-start mb-12">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic_external_on</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="space-y-4">
+<div>
+<h3 class="text-xl font-bold text-on-surface">Urban Rhythms</h3>
+<p class="text-on-surface-variant text-sm mt-1">Multi-cam interview series featuring local street performers.</p>
+</div>
+<div class="h-[1px] w-full bg-outline-variant/10"></div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional woman in corporate attire, modern bright office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0osn73WuUtkyzvXM2f9npPvBgTPySu6x63AzPkvhHkMh4HcdTXtgKp7VeHT9RcJc3WQp0AZxQYTcjFsqmOioey3Qdck1FdmWmP7GvpWvn1UU7oYpSp040ryK3QR3EIQbYDUXxQXJuz5XjAa2KurBcpKSeBNSIy2EKXEJewQldyVM6NU5FAOmaP9E1MtLrTYDTZ758b6UmdrQ9tB3wPCuJu_QBMFVQm6VUxV8NRN7SssorAMmvRAukl6BpCeCNYbmN8wMPAhJnuGM"/>
+</div>
+</div>
+<span class="text-xs font-bold text-tertiary">89 SCENES</span>
+</div>
+</div>
+<div class="mt-6">
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-1/5 signature-texture"></div>
+</div>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="group bg-surface-container rounded-lg p-6 flex flex-col justify-between border border-white/5 card-hover shadow-xl">
+<div class="flex justify-between items-start mb-12">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="space-y-4">
+<div>
+<h3 class="text-xl font-bold text-on-surface">VTracker Promo 24</h3>
+<p class="text-on-surface-variant text-sm mt-1">Product feature showcase with high-speed motion graphics.</p>
+</div>
+<div class="h-[1px] w-full bg-outline-variant/10"></div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="young man with beard and casual outfit in a studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMqKKu1nlXf6MGKp6rhTePYVfvdg1AznK_oaek18vA1zK5oJjtgpr5dR9VekF-al8pMbNfaEkFojzf6j11-JWGmE5epSm48DQXDp4MSa1LfqGPdzL84ideV1cI_DVMbpDiTeAbW5OxJmxA-_Ub24Uj2v0sBTq_Udh73cKC_nLiMYNIccQil-tv-SfRyTmnkwENHuLAaRBjR8iu9OxKDQDDdgzyxEmMxP0qHOeZZmmGT2PVnGaB-TOx1Ut9Pcz0zZSAXgaU4ltLWgU"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a man with a slight smile, outdoor soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDiLHfzWDCWRHf0cExbDrh-Ovgh1Rkn4eckhnKyblYgO2m1GRgIpXKNlC1ezYW8CI36OOeugrHm8xManIuRHnYsRe2C_Qh6VTU05dtWxyxuNBvSc8m-29qBb8bvauZZlo34kFX20pg-56gFMpIWhkcqHS6Q4AGJqyKcE29XZpfyV9V6g5qqYRM7q4ME3jWIWxuD28_fwEkQq0JFp7B__1GabFuLAKuK6-qXpCXDNP8AYHXP2rQ0Y4FtEWwRL8ubX2mtRkBv_xKz5U"/>
+</div>
+</div>
+<span class="text-xs font-bold text-tertiary">12 SCENES</span>
+</div>
+</div>
+<div class="mt-6">
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-full signature-texture"></div>
+</div>
+</div>
+</div>
+<!-- Project Card 5: Empty/New State -->
+<div class="group border-2 border-dashed border-outline-variant/30 rounded-lg p-6 flex flex-col items-center justify-center text-center gap-4 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-4xl">add_circle</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-on-surface">Start New Production</h3>
+<p class="text-sm text-on-surface-variant max-w-[180px] mx-auto mt-2">Create a blank project or start from a studio template.</p>
+</div>
+</div>
+</div>
+<!-- Timeline/Activity Section (Asymmetric Overlay Style) -->
+<section class="mt-20 relative">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold tracking-tight text-on-surface">Recent Studio Activity</h2>
+<button class="text-sm font-bold text-primary hover:underline">View All Logs</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+<div class="lg:col-span-3 space-y-4">
+<div class="glass-panel p-6 rounded-lg flex items-center gap-6 border border-white/5">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<div class="flex-1">
+<p class="text-on-surface font-semibold">Render Completed: <span class="text-primary">Neon Horizon_v4_Final.mp4</span></p>
+<p class="text-on-surface-variant text-sm">ProRes 422 HQ • 4K • 12.4GB</p>
+</div>
+<span class="text-xs font-medium text-on-surface-variant">2 mins ago</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg flex items-center gap-6 border border-white/5">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="flex-1">
+<p class="text-on-surface font-semibold">Sarah Jenkins added 14 assets to <span class="text-primary">The Alpine Session</span></p>
+<p class="text-on-surface-variant text-sm">Mavic 3 Pro D-Log Footage</p>
+</div>
+<span class="text-xs font-medium text-on-surface-variant">1 hour ago</span>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-lg border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 signature-texture rounded-full opacity-10 blur-2xl group-hover:scale-150 transition-transform"></div>
+<h4 class="text-xs font-black uppercase tracking-widest text-on-surface-variant mb-4">Storage Usage</h4>
+<p class="text-3xl font-bold text-on-surface">2.4 <span class="text-sm text-on-surface-variant font-medium">TB</span></p>
+<p class="text-xs text-on-surface-variant mt-1">of 5TB Studio Plan</p>
+<div class="mt-6 h-1 w-full bg-surface-container-highest rounded-full">
+<div class="h-full w-1/2 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual Floating Action for Projects -->
+<button class="fixed bottom-8 right-8 w-16 h-16 signature-texture rounded-full shadow-2xl flex items-center justify-center text-on-primary z-50 active:scale-90 transition-transform md:hidden">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

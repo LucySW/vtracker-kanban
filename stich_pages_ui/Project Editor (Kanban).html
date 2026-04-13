@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#201f1f",
+                        "on-tertiary-fixed-variant": "#6e1354",
+                        "on-surface": "#ffffff",
+                        "tertiary-fixed": "#ff8ed2",
+                        "secondary-dim": "#a28efc",
+                        "on-error": "#490013",
+                        "on-primary-fixed": "#000000",
+                        "inverse-on-surface": "#565554",
+                        "surface-variant": "#262626",
+                        "on-tertiary-fixed": "#3b002b",
+                        "surface-tint": "#bd9dff",
+                        "on-tertiary-container": "#63054a",
+                        "on-secondary-container": "#d4c9ff",
+                        "on-primary-container": "#2e006c",
+                        "primary-fixed-dim": "#a67aff",
+                        "tertiary": "#ffa5d9",
+                        "surface-dim": "#0e0e0e",
+                        "outline-variant": "#494847",
+                        "surface-container-lowest": "#000000",
+                        "background": "#0e0e0e",
+                        "error": "#ff6e84",
+                        "tertiary-container": "#ff8ed2",
+                        "error-dim": "#d73357",
+                        "surface-container-highest": "#262626",
+                        "on-secondary": "#21006d",
+                        "secondary-fixed": "#d6cbff",
+                        "tertiary-fixed-dim": "#ef81c4",
+                        "on-background": "#ffffff",
+                        "secondary-fixed-dim": "#c8bbff",
+                        "surface": "#0e0e0e",
+                        "outline": "#777575",
+                        "on-tertiary": "#701455",
+                        "inverse-surface": "#fcf8f8",
+                        "surface-container-low": "#131313",
+                        "primary-fixed": "#b28cff",
+                        "on-primary-fixed-variant": "#390083",
+                        "secondary": "#a28efc",
+                        "on-secondary-fixed": "#361c89",
+                        "secondary-container": "#49339d",
+                        "primary-dim": "#8a4cfc",
+                        "on-error-container": "#ffb2b9",
+                        "on-primary": "#3c0089",
+                        "tertiary-dim": "#ef81c4",
+                        "on-surface-variant": "#adaaaa",
+                        "primary-container": "#b28cff",
+                        "error-container": "#a70138",
+                        "primary": "#bd9dff",
+                        "surface-bright": "#2c2c2c",
+                        "surface-container": "#1a1919",
+                        "inverse-primary": "#742fe5",
+                        "on-secondary-fixed-variant": "#533ea7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 38, 0.6);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full w-64 bg-[#131313] py-8 px-4 gap-2 z-50 shadow-[20px_0_80px_rgba(0,0,0,0.4)]">
+<div class="px-4 mb-8">
+<h1 class="text-xl font-bold bg-gradient-to-r from-[#bd9dff] to-[#8a4cfc] bg-clip-text text-transparent">The Studio</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/60 font-semibold">Production Hub</p>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 bg-[#262626] text-[#bd9dff] rounded-full px-4 py-3 font-medium transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+<span>Templates</span>
+</a>
+<a class="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">video_library</span>
+<span>Library</span>
+</a>
+<a class="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 border-t border-white/5 pt-6">
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-3 px-4 rounded-full mb-4 hover:opacity-90 active:scale-[0.98] transition-all">
+                    Render Video
+                </button>
+<a class="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Account</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface relative">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-6 py-3 w-full border-b border-white/5 bg-[#0e0e0e]/80 backdrop-blur-xl sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<span class="text-lg font-semibold tracking-tighter text-white">VTracker</span>
+<span class="text-[10px] bg-surface-container-highest text-primary px-2 py-0.5 rounded-full border border-primary/20">PRO</span>
+</div>
+<nav class="hidden lg:flex items-center gap-6 font-['Inter'] font-normal text-sm tracking-tight">
+<a class="text-[#bd9dff] font-medium border-b border-[#bd9dff] pb-1" href="#">Projects</a>
+<a class="text-gray-400 font-normal hover:text-white transition-colors duration-200" href="#">Studio</a>
+<a class="text-gray-400 font-normal hover:text-white transition-colors duration-200" href="#">Review</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full pl-10 pr-4 py-1.5 text-xs w-64 focus:ring-1 focus:ring-primary/40 placeholder:text-outline transition-all" placeholder="Search project assets..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-gray-400 hover:bg-[#262626] rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-gray-400 hover:bg-[#262626] rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-white/10 ml-2">
+<img alt="User profile" data-alt="Close up portrait of a creative professional with a modern stylish look in a studio with soft moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEgAA4kfZj1ptjlD6rrP640epGdwikZtZYt4wk-uFK-VpJaZ3jXIey1A8xv9kGVWjBDZqlhR0E4-CzAw3Gi3x6XFu5trgIixjeafjzQZoCgrl46E4ov1sDp06NrzlH-G1Axfb-7anuxSxMX1AZFlMQqcag2GNymSwYVcSXFL54AdPsIwZsO56UGJeckBwEnTrezM_H56zPZsmX9C9IVNLjzH371T8v6Peq1bkeN9aLsOnaFEEu4SxGOH7DAnL5gL6FZhWqyF-SSkE"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Kanban Board Container -->
+<div class="flex-1 overflow-x-auto custom-scrollbar p-8">
+<div class="flex gap-8 h-full min-w-max">
+<!-- Column: Cena 1 -->
+<div class="flex flex-col w-[340px] h-full gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-semibold text-white tracking-tight">Cena 1 - Abertura</h3>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+</div>
+<p class="text-xs text-on-surface-variant/70 italic line-clamp-1 leading-relaxed">"A câmera sobrevoa uma cidade futurista em névoa neon..."</p>
+</div>
+<div class="flex flex-col gap-4 flex-1 overflow-y-auto custom-scrollbar pr-2">
+<!-- Card 1 -->
+<div class="bg-surface-container-low rounded-lg p-3 group cursor-grab active:cursor-grabbing hover:bg-surface-container-high transition-all border border-white/5 hover:border-primary/20 rotate-[-0.5deg] shadow-lg">
+<div class="relative rounded-md overflow-hidden aspect-video mb-3">
+<img alt="Video thumbnail" class="w-full h-full object-cover" data-alt="Cinematic wide shot of a futuristic cyberpunk city at night with neon signs and dense blue fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe4sMTyZ2UStLcDZAU23_Lf_VvxUJeLjrZyg-rXCeAW6-7669mj1qJaALm-A3eB6mNQ3g-WAmFr6dTiwGtD9R9d1DVyfHDNBlucTJpfPG_DjLOTgKRQXHv9-QBC7drybo3eVijOeyJ2QiWwuqSs4afpKYYtQdytv-KQUFb9rzMlJwML2mr8Y1RF8loNRe4zxm6X3PCKlmkIddEBs4C6FhUr9r024z4xf4T2qI23yLj6EtgOASWp3GU4aDmRevLTMGNmRotnZOyb5c"/>
+<div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded text-[10px] font-medium">0:04</div>
+<div class="absolute top-2 left-2 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider">16:9</div>
+</div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-tertiary-container/20 text-tertiary-fixed border border-tertiary/20">Runway</span>
+<div class="flex -space-x-2">
+<div class="h-5 w-5 rounded-full border border-surface-dim overflow-hidden bg-gray-800">
+<img alt="Avatar" data-alt="Small round headshot of a creative editor with a focused expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMoEULNjp9AAJEAsUjPVqg4EPLTQnTE_ndZMyeHjQrEYZ5W02DlUE2T5iQ7dfocyTc6WW6hdiC4UlZn-Cdu0JOEpqHjwAzcn9pUzDLIeUbosZkTfw_hpMJjKaAhN-qXyDzSHPV1ykmu5wSI_MtOojoFYQGC1eHHWM5Yk8Z_2eAOHAosYzgOGnKmAfP9cwtlsHrywVnCdpjdJa0o5lZL6Za7ASxeIXqAcm67dZ1BxOtcEj2J_Ld7vZdL-6I39zvnjTfCiVLr-yxiII"/>
+</div>
+</div>
+</div>
+<h4 class="text-xs font-medium text-on-surface line-clamp-2 leading-snug">Neon city flyover through dense volumetric fog</h4>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low rounded-lg p-3 group cursor-grab active:cursor-grabbing hover:bg-surface-container-high transition-all border border-white/5 hover:border-primary/20 shadow-md">
+<div class="relative rounded-md overflow-hidden aspect-video mb-3">
+<img alt="Video thumbnail" data-alt="Dark abstract cinematic landscape with glowing purple light streaks and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASZ8RObd5erYXdKER9FQ7IUre2hkhuYxL0kmc-DZeHJ80j_vCFnDSE26kq0NWlwwADvZmDfd2Nq-5SuZ0wdeMJGreJpwkIgV1LyCY96WXSD6InwECqiOYtrIyKlyBwwlTywF4J68XxzwXNehfYaEMVCWGCbIeD1cC8ZHJ5jzgnCoQQeVKdAvFG9LKh-wimwZFoTwNAxOt1SdTAD85aKn1d4MamQdp-U-4dHrc5hBf2kRBX416EFOv7f1upEzCL1GC4txawu0M6N7I"/>
+<div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded text-[10px] font-medium">0:04</div>
+<div class="absolute top-2 left-2 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider">16:9</div>
+</div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-secondary-container/20 text-secondary-dim border border-secondary/20">Pika</span>
+<div class="h-5 w-5 rounded-full border border-surface-dim overflow-hidden bg-gray-800">
+<img alt="Avatar" data-alt="Portrait of a young woman smiling slightly, professional creative look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmcR_opM7Z21Wu1snep25z_aL0VeXcYs-p0vnwSSjzg5-aBLOp0U2B85uU19OoQEmlCnuRw_LINDgAxcAKW9Ioj_2xDBFWMYPFl0CJxi84O94AJ_FbvX0uMdHa3yJUhdoYyiKxi3DXv1vCCOtTkqHyHbX4FU_KtfI8iucpLNW6uZ0QwTbzy2vG6bdjNbLcP8Ft4rUA5-KDyIZ5A_LS1nO8ffUv3M68ktBMFNx7UVE4poTVQjlfuPTgNAAYul5qLzQw2qmSfgaZRlY"/>
+</div>
+</div>
+<h4 class="text-xs font-medium text-on-surface line-clamp-2 leading-snug">Abstract light trails moving across dark textured surface</h4>
+</div>
+<button class="flex items-center justify-center gap-2 py-4 border-2 border-dashed border-white/5 rounded-lg text-xs font-medium text-on-surface-variant hover:border-primary/40 hover:text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Add New Generation
+                            </button>
+</div>
+</div>
+<!-- Column: Cena 2 -->
+<div class="flex flex-col w-[340px] h-full gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-semibold text-white tracking-tight">Cena 2 - Desenvolvimento</h3>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
+</div>
+<p class="text-xs text-on-surface-variant/70 italic line-clamp-1 leading-relaxed">"O herói caminha sob a chuva torrencial encarando o gigante..."</p>
+</div>
+<div class="flex flex-col gap-4 flex-1 overflow-y-auto custom-scrollbar pr-2">
+<!-- Card 3 -->
+<div class="bg-surface-container-low rounded-lg p-3 group cursor-grab active:cursor-grabbing hover:bg-surface-container-high transition-all border border-white/5 hover:border-primary/20 rotate-[1deg] shadow-xl">
+<div class="relative rounded-md overflow-hidden aspect-video mb-3">
+<img alt="Video thumbnail" data-alt="Dramatic scene of a lone figure in a dark coat standing in heavy rain with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkRN0dK6GSG8sYCML0nNAQ-IEdjs_01IrYeVPZMbz-q4vTdeRNinNUdOZA-jeMWw7bLq2kd9AQTKdEPYbMZu9fLFGOfjW92XWA_Lrd0cET8L8uVoSVm6XUogDDjRJVLejLCJJZsGdavZPiILYsJV589KamikEEzFylrPct5Cjq5sJwNHU5ntUmmn9g06dDTwFtO7GxtNBjYHyUqyWb-oHQHx2Xl8yJh3IXFnNwgLgWDiEzebcOQI3uv59h-h44Jt-DI-L1tRJr04c"/>
+<div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded text-[10px] font-medium">0:04</div>
+<div class="absolute top-2 left-2 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider">16:9</div>
+</div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-primary-container/20 text-primary-fixed border border-primary/20">Luma</span>
+<div class="h-5 w-5 rounded-full border border-surface-dim overflow-hidden bg-gray-800">
+<img alt="Avatar" data-alt="Portrait of a young man with a focused creative gaze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJD3kYjYEetZlFY7kwtfkrvS-2ddsSaCtgRamJfMgAg84TrNpg5xWx95IGt2nCXWM5DZR_yYNzolAKdxGVv8D3zL_7EVTOFQZN8uCtUKHj5rt3jr4qhLmkbntQDhdlQjvT5aZzT7V7gWmLIpY8Bgf8Khos53ykSh_dLgeE_bZjRBLEXgKKkBJToJuvddIcsfFKQW08gKKAOn5J3ODYwogXQzNhpnrBJOY3e3SVfn3g6uweGt2VhY8qo8pO8gdIxERrcd2xWqElVgc"/>
+</div>
+</div>
+<h4 class="text-xs font-medium text-on-surface line-clamp-2 leading-snug">Character walk cycle in heavy rain with realistic physics</h4>
+</div>
+<button class="flex items-center justify-center gap-2 py-4 border-2 border-dashed border-white/5 rounded-lg text-xs font-medium text-on-surface-variant hover:border-primary/40 hover:text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Add New Generation
+                            </button>
+</div>
+</div>
+<!-- Column: Cena 3 -->
+<div class="flex flex-col w-[340px] h-full gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-semibold text-white tracking-tight">Cena 3 - Conclusão</h3>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-full">1</span>
+</div>
+<p class="text-xs text-on-surface-variant/70 italic line-clamp-1 leading-relaxed">"O sol nasce por trás dos arranha-céus, revelando um novo mundo."</p>
+</div>
+<div class="flex flex-col gap-4 flex-1 overflow-y-auto custom-scrollbar pr-2">
+<!-- Card 4 -->
+<div class="bg-surface-container-low rounded-lg p-3 group cursor-grab active:cursor-grabbing hover:bg-surface-container-high transition-all border border-white/5 hover:border-primary/20 shadow-md">
+<div class="relative rounded-md overflow-hidden aspect-video mb-3">
+<img alt="Video thumbnail" data-alt="Stunning sunrise over a futuristic skyline with golden light reflecting off glass buildings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwjGbhqS4-dowOzKl-HXGzvSD__-leHW30spa7E419iDkYWy94ftDGM_mmR3zCUzB3LFKC2Q8_iYFGhxZAEXwluDLSU-ls__UGjj5GtLwee0dHTe24_2RvgzVQPZcjfvU7lHKk3ELAs58duvhRzCzj_eCRrUL56Y4L1tB-m9kkZ-Xp2xbsTf5tJcuY7hD_Biqrk2YolDMxV7fvE89b6jaxSCWi77pJkb8opf-tqedr3Oe26l-9xRkn--N54GVmjD13PhsM-gjDMNo"/>
+<div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded text-[10px] font-medium">0:04</div>
+<div class="absolute top-2 left-2 bg-primary/90 text-on-primary px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider">16:9</div>
+</div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-tertiary-container/20 text-tertiary-fixed border border-tertiary/20">Runway</span>
+<div class="h-5 w-5 rounded-full border border-surface-dim overflow-hidden bg-gray-800">
+<img alt="Avatar" data-alt="Headshot of a modern creative designer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMh8eWSifSo5SaQsxosMoXYM3G8SH5yJDSAJfKLNVMeDAMy8FIgXojy5awyOa5kCC_UhFY-uLZaozX52XNvJAPVC-4ZjO54nVItFs3MTvSDgldFLtx60oRRHEOkvrxd6TdhgNA_fRz8PQwzQCmKmKnT69WFzJhOzgBaADfUdXxiFW8NZsnwp1jiDtKGtJWQ9jZ59iEckaEopC3C9VLCMNfMgASkrWQ-m2QJ0liazk0WzUXEcKQbq0NLTSUe6GOxPxpBvbxiOHBNrc"/>
+</div>
+</div>
+<h4 class="text-xs font-medium text-on-surface line-clamp-2 leading-snug">Golden hour sunrise over futuristic cityscape</h4>
+</div>
+<button class="flex items-center justify-center gap-2 py-4 border-2 border-dashed border-white/5 rounded-lg text-xs font-medium text-on-surface-variant hover:border-primary/40 hover:text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Add New Generation
+                            </button>
+</div>
+</div>
+<!-- Add Column Placeholder -->
+<div class="flex flex-col w-[340px] h-full pt-14">
+<button class="group flex flex-col items-center justify-center gap-3 w-full h-[200px] border-2 border-dashed border-white/5 rounded-2xl hover:border-primary/20 hover:bg-surface-container-low transition-all">
+<div class="h-10 w-10 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="text-sm font-medium text-on-surface-variant">Add New Scene</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Floating Panel (Bottom Right) -->
+<div class="absolute bottom-8 right-8 flex flex-col gap-3">
+<div class="glass-panel p-4 rounded-xl border border-white/10 shadow-2xl w-64">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Active Render</span>
+<span class="text-[10px] font-medium text-on-surface-variant">42%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden mb-3">
+<div class="h-full w-[42%] bg-gradient-to-r from-primary to-primary-dim shadow-[0_0_12px_rgba(189,157,255,0.4)]"></div>
+</div>
+<p class="text-[11px] text-on-surface/80">Processing: Scene 2 Walk Cycle...</p>
+</div>
+<button class="bg-primary text-on-primary h-14 w-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation Shell (Suppressed based on Task Flow) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 glass-panel border-t border-white/5 flex justify-around items-center py-3 px-6 z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] font-medium">Projects</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+<span class="text-[10px] font-medium">Templates</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined">video_library</span>
+<span class="text-[10px] font-medium">Library</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Account</span>
+</button>
+</div>
+</body></html>

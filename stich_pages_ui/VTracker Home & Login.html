@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VTracker Obsidian | Workflow Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary-container": "#49339d",
+                "on-primary-fixed-variant": "#390083",
+                "primary-container": "#b28cff",
+                "secondary": "#a28efc",
+                "surface": "#0e0e0e",
+                "on-background": "#ffffff",
+                "on-tertiary-fixed-variant": "#6e1354",
+                "surface-container-lowest": "#000000",
+                "inverse-on-surface": "#565554",
+                "primary-fixed-dim": "#a67aff",
+                "on-tertiary-fixed": "#3b002b",
+                "on-tertiary": "#701455",
+                "on-primary-container": "#2e006c",
+                "outline": "#777575",
+                "tertiary-container": "#ff8ed2",
+                "primary": "#bd9dff",
+                "on-error": "#490013",
+                "secondary-fixed": "#d6cbff",
+                "on-secondary-fixed": "#361c89",
+                "primary-fixed": "#b28cff",
+                "surface-dim": "#0e0e0e",
+                "surface-container-highest": "#262626",
+                "inverse-surface": "#fcf8f8",
+                "on-error-container": "#ffb2b9",
+                "error-container": "#a70138",
+                "error": "#ff6e84",
+                "outline-variant": "#494847",
+                "on-surface-variant": "#adaaaa",
+                "on-tertiary-container": "#63054a",
+                "tertiary-fixed": "#ff8ed2",
+                "surface-bright": "#2c2c2c",
+                "secondary-fixed-dim": "#c8bbff",
+                "on-secondary-container": "#d4c9ff",
+                "tertiary-fixed-dim": "#ef81c4",
+                "surface-container-low": "#131313",
+                "tertiary": "#ffa5d9",
+                "inverse-primary": "#742fe5",
+                "on-surface": "#ffffff",
+                "on-secondary": "#21006d",
+                "surface-container-high": "#201f1f",
+                "on-primary": "#3c0089",
+                "surface-container": "#1a1919",
+                "surface-variant": "#262626",
+                "surface-tint": "#bd9dff",
+                "secondary-dim": "#a28efc",
+                "on-primary-fixed": "#000000",
+                "tertiary-dim": "#ef81c4",
+                "primary-dim": "#8a4cfc",
+                "on-secondary-fixed-variant": "#533ea7",
+                "error-dim": "#d73357",
+                "background": "#0e0e0e"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #0e0e0e;
+      }
+      .glass-effect {
+        background: rgba(38, 38, 38, 0.6);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .ghost-border {
+        outline: 1px solid rgba(73, 72, 71, 0.15);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen overflow-hidden flex flex-col">
+<!-- Top Navigation (Shell Invisible for focused login journey but logo persists for identity) -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-8 h-20 bg-gradient-to-b from-zinc-900 to-transparent">
+<div class="text-2xl font-black tracking-tighter text-white uppercase">AUTEUR</div>
+<div class="flex gap-4">
+<span class="text-zinc-500 font-medium text-sm tracking-widest uppercase">System Status: Online</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col md:flex-row h-screen pt-20">
+<!-- Left Section: Branding & Impact -->
+<section class="hidden md:flex flex-1 flex-col justify-center px-16 lg:px-24 bg-surface-container-low relative overflow-hidden">
+<!-- Decorative atmospheric background -->
+<div class="absolute inset-0 z-0 opacity-40">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-12 right-12 w-64 h-64 bg-secondary/10 blur-[80px] rounded-full"></div>
+</div>
+<div class="relative z-10 space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-highest ghost-border">
+<span class="material-symbols-outlined text-primary text-sm">auto_awesome</span>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Now featuring Script-Sync</span>
+</div>
+<div class="space-y-4">
+<h1 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] text-white">
+                        VTracker <span class="text-primary-dim">Workflow Hub</span>
+</h1>
+<p class="text-lg lg:text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                        The definitive platform for video production, AI generation, and real-time script sync. Orchestrate your creative vision with precision.
+                    </p>
+</div>
+<div class="grid gap-6 pt-8">
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-highest flex items-center justify-center transition-transform group-hover:scale-110 duration-300">
+<span class="material-symbols-outlined text-primary">view_kanban</span>
+</div>
+<div>
+<h3 class="text-white font-semibold text-lg">Advanced Interactive Kanban</h3>
+<p class="text-on-surface-variant text-sm">Visualize your entire production pipeline with dynamic status tracking.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-highest flex items-center justify-center transition-transform group-hover:scale-110 duration-300">
+<span class="material-symbols-outlined text-secondary">movie_edit</span>
+</div>
+<div>
+<h3 class="text-white font-semibold text-lg">Integrated AI Video Generation</h3>
+<p class="text-on-surface-variant text-sm">Harness the power of neural engines to generate b-roll and concept art instantly.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 group">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-highest flex items-center justify-center transition-transform group-hover:scale-110 duration-300">
+<span class="material-symbols-outlined text-primary-fixed-dim">sync_alt</span>
+</div>
+<div>
+<h3 class="text-white font-semibold text-lg">Real-Time Script Synchronization</h3>
+<p class="text-on-surface-variant text-sm">Keep your teleprompter, dailies, and editorial team in perfect alignment.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 left-16 opacity-30">
+<img class="w-48 h-auto grayscale" data-alt="close-up of a high-end black brushed aluminum camera body with complex mechanical details and cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABthuhtdgG2aqu0r-CusGVkGJg5cldWunQbz32HpMm3Zz6E7wZkRl1wPv63DvjlrpYwGwOaNdI9OxqZ99Oj25SE4yhVnJS6n-TqQBfs2GfKfLFQGmKEeLo7xkvEGilkQvS2cyqzQ74oVGLNJqHJkqaZ_l1yxpVlUZprBMXHlmiyIE5C853t9SNvxyJQLaddFyZ3FjhX3U0sYgpTnYIqk2RFNfSTMMLF7YoDz4JAHbPtVkWCLJ0NBKUYuveX-8fvDVsryGKiFX1z7k"/>
+</div>
+</section>
+<!-- Right Section: Login Interface -->
+<section class="flex-1 flex items-center justify-center bg-surface p-8 relative">
+<div class="absolute inset-0 md:hidden overflow-hidden opacity-20 pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-primary/30 blur-[160px] rounded-full"></div>
+</div>
+<!-- Login Card -->
+<div class="w-full max-w-md glass-effect p-8 lg:p-12 rounded-lg ghost-border shadow-[0_20px_80px_rgba(0,0,0,0.6)] relative overflow-hidden group">
+<!-- Top Gradient highlight -->
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-dim/40 to-transparent"></div>
+<div class="text-center mb-10">
+<h2 class="text-3xl font-semibold text-white tracking-tight mb-2">Bem-vindo de volta</h2>
+<p class="text-on-surface-variant text-sm">Faça login na sua conta para continuar</p>
+</div>
+<div class="space-y-6">
+<!-- Google Auth -->
+<button class="w-full h-14 flex items-center justify-center gap-3 bg-white text-on-primary-fixed rounded-full font-semibold hover:bg-zinc-200 transition-all duration-300 active:scale-95">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                        Sign in with Google
+                    </button>
+<!-- Divider -->
+<div class="flex items-center gap-4 py-2">
+<div class="flex-grow h-[1px] bg-outline-variant/20"></div>
+<span class="text-[10px] uppercase font-bold tracking-[0.2em] text-zinc-600">Ou entre com e-mail</span>
+<div class="flex-grow h-[1px] bg-outline-variant/20"></div>
+</div>
+<!-- Email Form -->
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant ml-4">Endereço de Email</label>
+<input class="w-full h-14 bg-surface-container-lowest text-white px-6 rounded-full border-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-zinc-700" placeholder="nome@exemplo.com" type="email"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-4">
+<label class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant">Senha</label>
+<a class="text-[10px] uppercase font-bold tracking-widest text-primary hover:text-white transition-colors" href="#">Esqueci minha senha</a>
+</div>
+<input class="w-full h-14 bg-surface-container-lowest text-white px-6 rounded-full border-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-zinc-700" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-14 bg-primary-container text-on-primary-container font-bold text-lg rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                        Entrar
+                    </button>
+<div class="text-center pt-2">
+<span class="text-on-surface-variant text-sm">Não tem uma conta? </span>
+<a class="text-white font-bold text-sm hover:text-primary transition-colors" href="#">Criar conta</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full py-8 px-8 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center gap-6 border-t border-outline-variant/10 z-40">
+<div class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">© 2024 AUTEUR DIGITAL. ALL RIGHTS RESERVED.</div>
+<div class="flex gap-8">
+<a class="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-indigo-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-indigo-400 transition-colors" href="#">Privacy Protocol</a>
+<a class="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-indigo-400 transition-colors" href="#">System Status</a>
+<a class="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-indigo-400 transition-colors" href="#">API Docs</a>
+</div>
+</footer>
+</body></html>
