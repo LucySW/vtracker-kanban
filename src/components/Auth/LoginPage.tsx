@@ -43,6 +43,7 @@ export default function LoginPage({ theme }: { theme: 'light' | 'dark' }) {
                 },
               }}
               providers={['google']}
+              redirectTo={window.location.origin}
               theme={theme}
               localization={{
                 variables: {
