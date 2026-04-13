@@ -1,49 +1,54 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+interface SidebarProps {
+  activeView?: 'projects' | 'templates' | 'library' | 'settings';
+  onNavigate?: (view: string) => void;
+}
 
-export function Sidebar() {
+export function Sidebar({ activeView = 'projects', onNavigate }: SidebarProps) {
+  const navItems = [
+    { id: 'projects', icon: 'grid_view', label: 'Projects' },
+    { id: 'templates', icon: 'auto_awesome_motion', label: 'Templates' },
+    { id: 'library', icon: 'video_library', label: 'Library' },
+    { id: 'settings', icon: 'settings', label: 'Settings' },
+  ];
+
   return (
-    <aside className="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-zinc-950 flex flex-col p-4 gap-2 z-40">
-      <div className="mb-8 px-2 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full signature-texture flex items-center justify-center">
-          <span className="material-symbols-outlined text-on-primary" style={{ fontVariationSettings: "'FILL' 1" }}>movie_filter</span>
-        </div>
-        <div>
-          <h1 className="text-lg font-black tracking-tighter text-violet-600 dark:text-violet-400">VTracker</h1>
-          <p className="text-[10px] uppercase tracking-widest text-slate-500">Studio Edition</p>
-        </div>
+    <aside className="hidden md:flex flex-col h-full w-64 bg-surface-container-low py-8 px-4 gap-2 shadow-[20px_0_80px_rgba(0,0,0,0.4)] z-50">
+      {/* Branding */}
+      <div className="mb-10 px-4">
+        <h1 className="text-xl font-bold text-gradient-primary">The Studio</h1>
+        <p className="text-xs text-gray-500 font-medium tracking-wide">Production Hub</p>
       </div>
-      <nav className="space-y-1">
-        <NavLink to="/" end className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-full font-medium text-sm transition-colors ${isActive ? 'text-violet-600 dark:text-violet-400 bg-slate-200/50 dark:bg-zinc-800/50' : 'text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900'}`}>
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>movie_filter</span>
-          Projects
-        </NavLink>
-        {/* Placeholder Nav items, we can route them later */}
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm">
-          <span className="material-symbols-outlined">dashboard</span>
-          Dashboard
-        </button>
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm">
-          <span className="material-symbols-outlined">view_timeline</span>
-          Timeline
-        </button>
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm">
-          <span className="material-symbols-outlined">inventory_2</span>
-          Assets
-        </button>
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm">
-          <span className="material-symbols-outlined">group</span>
-          Team
-        </button>
+
+      {/* Navigation */}
+      <nav className="flex flex-col gap-2 flex-grow">
+        {navItems.map(item => (
+          <button
+            key={item.id}
+            onClick={() => onNavigate?.(item.id)}
+            className={`flex items-center gap-3 px-4 py-3 rounded-full font-medium tracking-wide transition-all duration-300 w-full text-left ${
+              activeView === item.id
+                ? 'bg-surface-container-highest text-primary'
+                : 'text-gray-500 hover:text-gray-200 hover:bg-[#1a1a1a] hover:translate-x-1'
+            }`}
+          >
+            <span className="material-symbols-outlined">{item.icon}</span>
+            <span>{item.label}</span>
+          </button>
+        ))}
       </nav>
-      <div className="mt-auto pt-4 space-y-1">
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm">
-          <span className="material-symbols-outlined">help</span>
-          Help
+
+      {/* Bottom actions */}
+      <div className="mt-auto flex flex-col gap-2 pt-6">
+        <button className="w-full bg-gradient-to-r from-primary to-primary-dim text-on-primary-container font-semibold py-3 px-4 rounded-full mb-6 hover:opacity-90 active:scale-[0.98] transition-all">
+          Render Video
         </button>
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-full transition-colors font-medium text-sm">
-          <span className="material-symbols-outlined">archive</span>
-          Archive
+        <button className="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300 w-full">
+          <span className="material-symbols-outlined">contact_support</span>
+          <span>Support</span>
+        </button>
+        <button className="flex items-center gap-3 text-gray-500 px-4 py-3 hover:text-gray-200 hover:bg-[#1a1a1a] rounded-full transition-all duration-300 w-full">
+          <span className="material-symbols-outlined">person</span>
+          <span>Account</span>
         </button>
       </div>
     </aside>

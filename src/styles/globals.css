@@ -3,12 +3,32 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    color-scheme: dark;
+  }
   body {
-    @apply bg-background text-on-background font-body;
+    @apply bg-background text-on-surface font-body antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #494456;
+    border-radius: 10px;
   }
 }
 
 @layer utilities {
+  /* ===== Obsidian Glass Effects ===== */
   .glass-panel {
     background: rgba(38, 38, 38, 0.6);
     backdrop-filter: blur(24px);
@@ -22,24 +42,45 @@
   .ghost-border {
     outline: 1px solid rgba(73, 72, 71, 0.15);
   }
+
+  /* ===== Signature Branding ===== */
   .signature-texture {
     background: linear-gradient(135deg, #cdbdff 0%, #5d21df 100%);
   }
-  .card-hover {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  .text-gradient-primary {
+    background: linear-gradient(to right, #bd9dff, #8a4cfc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .card-hover:hover {
-    transform: rotate(2deg) scale(1.02);
+
+  /* ===== Scene Workspace ===== */
+  .scene-column {
+    background: radial-gradient(circle at 50% 0%, rgba(93, 33, 223, 0.05) 0%, transparent 70%);
   }
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+  .kinetic-card:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 50;
   }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: #0e0e0e;
+
+  /* ===== Material Symbols ===== */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #262626;
-    border-radius: 10px;
+
+  /* ===== Animations ===== */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
