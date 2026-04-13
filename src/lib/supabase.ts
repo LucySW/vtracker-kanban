@@ -1,12 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// ATENÇÃO: As variáveis de ambiente na Vercel falharam em injetar repetidas vezes.
+// Como a Anon Key do Supabase é pública (safe to expose no frontend, desde que o RLS
+// esteja ativado no banco), vamos hardcodar aqui para garantir que o app funcione.
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://rfjsqxntwbyexfbgabzn.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_jsa4hkOCAFSNBc5mdsxWKQ_soxZ3LV7';
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error("Faltam as variáveis de ambiente VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY.");
-}
-
-// Em caso de falta das variáveis (para evitar tela branca de crash logo no boot), vamos colocar um fallback vazio, 
-// o que vai falhar mas não quebrar o React de renderizar a UI.
-export const supabase = createClient(supabaseUrl || 'https://placeholder.supabase.co', supabaseAnonKey || 'placeholder');
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
