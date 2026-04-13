@@ -52,7 +52,7 @@ export default function Dashboard({ userId, onSelectProject, theme, onToggleThem
     <div className="dashboard">
       <header className="topbar">
         <div className="topbar-left">
-          <span className="topbar-title">🎬 VTracker</span>
+          <span className="topbar-title">🎬 Romsoft Hub</span>
         </div>
         <div className="topbar-right">
           <button className="btn-icon theme-toggle" onClick={onToggleTheme}>{theme === 'dark' ? '☀️' : '🌙'}</button>
