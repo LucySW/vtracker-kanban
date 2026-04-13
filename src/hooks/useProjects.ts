@@ -36,13 +36,22 @@ export function useProjects(userId?: string) {
   const createProject = async (name: string, description: string, templateId?: string) => {
     if (!userId) return null;
 
+    // Remove template_id from insert if it's undefined to avoid uuid casting errors
+    const projectData: any = { name, description, user_id: userId };
+    if (templateId) projectData.template_id = templateId;
+
     const { data: project, error } = await supabase
       .from('projects')
-      .insert({ name, description, user_id: userId, template_id: templateId })
+      .insert(projectData)
       .select()
       .single();
 
-    if (error || !project) return null;
+    if (error) {
+      console.error('Error creating project:', error);
+      alert('Erro ao criar projeto: ' + error.message);
+      return null;
+    }
+    if (!project) return null;
 
     // Create columns from template
     if (templateId) {

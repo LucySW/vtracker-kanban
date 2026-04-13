@@ -18,10 +18,12 @@ export default function Dashboard({ userId, onSelectProject, theme, onToggleThem
   const [newName, setNewName] = useState('');
   const [newDesc, setNewDesc] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('');
+  const [saving, setSaving] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleCreate = async () => {
-    if (!newName.trim()) return;
+    if (!newName.trim() || saving) return;
+    setSaving(true);
     const project = await createProject(newName, newDesc, selectedTemplate || undefined);
     if (project) {
       setShowNewModal(false);
@@ -30,6 +32,7 @@ export default function Dashboard({ userId, onSelectProject, theme, onToggleThem
       setSelectedTemplate('');
       onSelectProject(project);
     }
+    setSaving(false);
   };
 
   const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,8 +121,10 @@ export default function Dashboard({ userId, onSelectProject, theme, onToggleThem
               </select>
             </div>
             <div className="modal-actions">
-              <button className="btn btn-ghost" onClick={() => setShowNewModal(false)}>Cancelar</button>
-              <button className="btn btn-primary" onClick={handleCreate}>Criar Projeto</button>
+              <button className="btn btn-ghost" onClick={() => setShowNewModal(false)} disabled={saving}>Cancelar</button>
+              <button className="btn btn-primary" onClick={handleCreate} disabled={saving}>
+                {saving ? 'Criando...' : 'Criar Projeto'}
+              </button>
             </div>
           </div>
         </div>
