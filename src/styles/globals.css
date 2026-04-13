@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #f8fafc; --bg-secondary: #f1f5f9; --bg-card: #ffffff; --bg-elevated: #ffffff;
+  --text-primary: #0f172a; --text-secondary: #334155; --text-muted: #94a3b8;
+  --border: #e2e8f0; --border-hover: #cbd5e1;
+  --accent: #3b82f6; --accent-hover: #2563eb; --accent-soft: #dbeafe;
+  --danger: #ef4444; --success: #22c55e; --warning: #f59e0b;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05); --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px; --radius-xl: 20px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0b1120; --bg-secondary: #131b2e; --bg-card: #1a2332; --bg-elevated: #1f2b3d;
+  --text-primary: #f1f5f9; --text-secondary: #cbd5e1; --text-muted: #64748b;
+  --border: #1e3a5f; --border-hover: #2d4a6f;
+  --accent: #60a5fa; --accent-hover: #3b82f6; --accent-soft: #1e3a5f;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5); --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.6);
+}
+
+html, body, #root { height: 100%; }
+body { font-family: var(--font); background: var(--bg-primary); color: var(--text-primary); transition: background var(--transition), color var(--transition); -webkit-font-smoothing: antialiased; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: none; border-radius: var(--radius-sm); font-family: var(--font); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all var(--transition); }
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--bg-secondary); border-color: var(--border-hover); }
+.btn-danger { background: var(--danger); color: white; }
+.btn-danger:hover { opacity: 0.9; }
+.btn-icon { padding: 8px; border-radius: var(--radius-sm); background: transparent; border: none; color: var(--text-muted); cursor: pointer; transition: all var(--transition); font-size: 1.1rem; }
+.btn-icon:hover { background: var(--bg-secondary); color: var(--text-primary); }
+
+/* Inputs */
+.input { width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-family: var(--font); font-size: 0.9rem; transition: border var(--transition); }
+.input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.textarea { resize: vertical; min-height: 80px; }
+
+/* Modal Overlay */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-box { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; width: 90%; max-width: 520px; box-shadow: var(--shadow-xl); }
+.modal-box h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 6px; }
+.modal-box p { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 20px; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
