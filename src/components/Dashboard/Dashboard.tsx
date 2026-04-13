@@ -23,16 +23,26 @@ export default function Dashboard({ userId, onSelectProject, theme, onToggleThem
 
   const handleCreate = async () => {
     if (!newName.trim() || saving) return;
+    
+    console.log('[Dashboard] Starting project creation...', { newName, newDesc, selectedTemplate });
     setSaving(true);
-    const project = await createProject(newName, newDesc, selectedTemplate || undefined);
-    if (project) {
-      setShowNewModal(false);
-      setNewName('');
-      setNewDesc('');
-      setSelectedTemplate('');
-      onSelectProject(project);
+    
+    try {
+      const project = await createProject(newName, newDesc, selectedTemplate || undefined);
+      console.log('[Dashboard] createProject result:', project);
+      
+      if (project) {
+        setShowNewModal(false);
+        setNewName('');
+        setNewDesc('');
+        setSelectedTemplate('');
+        onSelectProject(project);
+      }
+    } catch (err) {
+      console.error('[Dashboard] Unhandled exception in handleCreate:', err);
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
   };
 
   const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {

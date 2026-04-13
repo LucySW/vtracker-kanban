@@ -34,42 +34,61 @@ export function useProjects(userId?: string) {
   }, [fetchProjects, fetchTemplates]);
 
   const createProject = async (name: string, description: string, templateId?: string) => {
-    if (!userId) return null;
-
-    // Remove template_id from insert if it's undefined to avoid uuid casting errors
-    const projectData: any = { name, description, user_id: userId };
-    if (templateId) projectData.template_id = templateId;
-
-    const { data: project, error } = await supabase
-      .from('projects')
-      .insert(projectData)
-      .select()
-      .single();
-
-    if (error) {
-      console.error('Error creating project:', error);
-      alert('Erro ao criar projeto: ' + error.message);
+    if (!userId) {
+      console.error('[useProjects] createProject called without userId!');
       return null;
     }
-    if (!project) return null;
 
-    // Create columns from template
-    if (templateId) {
-      const template = templates.find(t => t.id === templateId);
-      if (template) {
-        const columns = template.columns_config.map((col: { name: string; color?: string; script_text?: string }, idx: number) => ({
-          project_id: project.id,
-          name: col.name,
-          position: idx,
-          color: col.color || null,
-          script_text: col.script_text || null,
-        }));
-        await supabase.from('columns').insert(columns);
+    try {
+      console.log(`[useProjects] Creating project: ${name}, template: ${templateId}`);
+      // Remove template_id from insert if it's undefined to avoid uuid casting errors
+      const projectData: any = { name, description, user_id: userId };
+      if (templateId) projectData.template_id = templateId;
+
+      const { data: project, error } = await supabase
+        .from('projects')
+        .insert(projectData)
+        .select()
+        .single();
+
+      if (error) {
+        console.error('[useProjects] Supabase insertion error:', error);
+        alert('Erro ao criar projeto: ' + error.message);
+        return null;
       }
-    }
+      if (!project) {
+        console.error('[useProjects] Supabase returned no project data');
+        return null;
+      }
 
-    await fetchProjects();
-    return project;
+      console.log('[useProjects] Project created successfully! ID:', project.id);
+
+      // Create columns from template
+      if (templateId) {
+        console.log('[useProjects] Applying template columns...');
+        const template = templates.find(t => t.id === templateId);
+        if (template) {
+          const columns = template.columns_config.map((col: { name: string; color?: string; script_text?: string }, idx: number) => ({
+            project_id: project.id,
+            name: col.name,
+            position: idx,
+            color: col.color || null,
+            script_text: col.script_text || null,
+          }));
+          const { error: colErr } = await supabase.from('columns').insert(columns);
+          if (colErr) console.error('[useProjects] Error inserting columns:', colErr);
+        } else {
+          console.warn('[useProjects] Selected template not found in state:', templateId);
+        }
+      }
+
+      await fetchProjects();
+      return project;
+    } catch (err: any) {
+      console.error('[useProjects] Unhandled exception in createProject:', err);
+      alert('Erro inesperado de rede/conexão: ' + err.message);
+      return null;
+    }
   };
 
   const createProjectFromJson = async (jsonData: { project_name: string; scenes: { name: string; script: string; notes?: string }[] }) => {
