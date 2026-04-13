@@ -13,7 +13,7 @@ export default function KanbanColumn({ column, cardCount, children, onDelete, on
   const { setNodeRef, isOver } = useDroppable({ id: column.id });
 
   return (
-    <div className="flex-none w-72 h-full flex flex-col gap-6">
+    <div className="flex-none w-72 h-full flex flex-col gap-6 group">
       {/* Column Header */}
       <div className="flex items-center justify-between px-2">
         <h2 className="text-lg font-bold text-zinc-200">{column.name}</h2>
@@ -24,7 +24,7 @@ export default function KanbanColumn({ column, cardCount, children, onDelete, on
           <button
             onClick={onDelete}
             className="p-1 text-zinc-600 hover:text-error rounded-full hover:bg-error/10 transition-all opacity-0 group-hover:opacity-100"
-            title="Delete column"
+            title="Excluir coluna"
           >
             <span className="material-symbols-outlined text-sm">delete</span>
           </button>
@@ -50,10 +50,10 @@ export default function KanbanColumn({ column, cardCount, children, onDelete, on
         {/* Append Scene button */}
         <button
           onClick={onAddCard}
-          className="w-full py-4 border-2 border-dashed border-outline-variant/20 rounded-xl flex flex-col items-center justify-center gap-2 text-on-surface-variant hover:bg-surface-container-low/50 hover:border-primary/30 transition-colors group"
+          className="w-full py-4 border-2 border-dashed border-outline-variant/20 rounded-xl flex flex-col items-center justify-center gap-2 text-on-surface-variant hover:bg-surface-container-low/50 hover:border-primary/30 transition-colors group/add"
         >
-          <span className="material-symbols-outlined group-hover:text-primary transition-colors">add_circle</span>
-          <span className="text-[10px] font-bold uppercase tracking-widest">Append Scene</span>
+          <span className="material-symbols-outlined group-hover/add:text-primary transition-colors">add_circle</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest">Adicionar Card</span>
         </button>
       </div>
     </div>

@@ -236,19 +236,19 @@ export default function LoginPage(_props: { theme: 'light' | 'dark' }) {
 
       {/* ===== Footer ===== */}
       <footer className="fixed bottom-0 w-full py-6 px-8 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant/10 z-40">
-        <div className="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">© 2024 VTRACKER DIGITAL. ALL RIGHTS RESERVED.</div>
+        <div className="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">© 2024 VTRACKER DIGITAL. TODOS OS DIREITOS RESERVADOS.</div>
         <div className="flex gap-8">
-          <a className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Terms of Service</a>
-          <a className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Privacy Protocol</a>
-          <a className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">System Status</a>
+          <a className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Termos de Uso</a>
+          <a className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Política de Privacidade</a>
+          <a className="text-zinc-600 text-[10px] uppercase tracking-widest font-bold hover:text-primary transition-colors" href="#">Status do Sistema</a>
         </div>
       </footer>
 
       {/* ===== Header ===== */}
       <header className="fixed top-0 w-full z-50 flex items-center justify-between px-8 h-20 bg-gradient-to-b from-zinc-900 to-transparent pointer-events-none">
-        <div className="text-2xl font-black tracking-tighter text-white uppercase pointer-events-auto">AUTEUR</div>
+        <div className="text-2xl font-black tracking-tighter text-white uppercase pointer-events-auto">VTRACKER</div>
         <div className="flex gap-4 pointer-events-auto">
-          <span className="text-zinc-500 font-medium text-sm tracking-widest uppercase">System Status: Online</span>
+          <span className="text-zinc-500 font-medium text-sm tracking-widest uppercase">Status: Online</span>
         </div>
       </header>
     </div>

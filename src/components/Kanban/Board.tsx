@@ -58,10 +58,12 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
   const handleAddCard = async (columnId: string) => {
     await addCard(columnId, {
       user_id: userId,
-      prompt: 'New scene clip',
+      prompt: 'Novo clipe de cena',
       status: 'draft',
     });
   };
+
+  const totalCards = columns.reduce((sum, col) => sum + getColumnCards(col.id).length, 0);
 
   return (
     <div
@@ -72,7 +74,6 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
       <TopBar
         userEmail={userEmail}
         onSignOut={onSignOut}
-        activeTab="studio"
         onBack={onBack}
         title={project.name}
       />
@@ -85,45 +86,47 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
           </div>
           <div>
             <p className="text-white font-black text-lg leading-tight truncate max-w-[140px]">{project.name}</p>
-            <p className="text-zinc-500 text-xs">{project.description || 'No description'}</p>
+            <p className="text-zinc-500 text-xs">{project.description || 'Sem descrição'}</p>
           </div>
         </div>
 
-        <nav className="flex-1 flex flex-col gap-1">
-          <button className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border-r-2 border-primary transition-all">
-            <span className="material-symbols-outlined">video_library</span>
-            <span>Media Pool</span>
-          </button>
-          <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 transition-all">
-            <span className="material-symbols-outlined">auto_fix_high</span>
-            <span>Effects</span>
-          </button>
-          <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 transition-all">
-            <span className="material-symbols-outlined">movie_edit</span>
-            <span>Transitions</span>
-          </button>
-          <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 transition-all">
-            <span className="material-symbols-outlined">graphic_eq</span>
-            <span>Audio</span>
-          </button>
-          <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 transition-all">
-            <span className="material-symbols-outlined">info</span>
-            <span>Inspector</span>
-          </button>
-        </nav>
+        {/* Stats */}
+        <div className="px-2 space-y-3 mb-4">
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-zinc-500">Total de Cenas</span>
+            <span className="text-zinc-300 font-medium">{columns.length}</span>
+          </div>
+          <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-tertiary h-full transition-all duration-500" style={{ width: `${Math.min(100, columns.length * 15)}%` }} />
+          </div>
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-zinc-500">Total de Cards</span>
+            <span className="text-zinc-300 font-medium">{totalCards}</span>
+          </div>
+        </div>
+
+        <div className="border-t border-outline-variant/10 pt-4">
+          <div className="flex items-center bg-surface-container-high rounded-xl px-3 py-2 gap-2 text-xs border border-outline-variant/10">
+            <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
+            <span className="text-on-surface-variant font-medium">Sincronização em Tempo Real</span>
+          </div>
+        </div>
 
         <button
           onClick={() => setShowAddColumn(true)}
           className="mt-4 bg-primary text-on-primary py-3 rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
         >
           <span className="material-symbols-outlined">add</span>
-          New Scene
+          Nova Cena
         </button>
 
-        <div className="mt-auto border-t border-outline-variant/20 pt-4 flex flex-col gap-1">
-          <button className="flex items-center gap-3 px-4 py-2 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 transition-all">
-            <span className="material-symbols-outlined">help_outline</span>
-            <span>Help</span>
+        <div className="mt-auto">
+          <button
+            onClick={onBack}
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 transition-all w-full"
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+            <span>Voltar aos Projetos</span>
           </button>
         </div>
       </aside>
@@ -133,14 +136,8 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
         {/* Dashboard Header */}
         <div className="px-8 py-6 flex items-end justify-between shrink-0">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight text-on-surface">Storyboard Board</h1>
-            <p className="text-on-surface-variant text-sm mt-1">Arranging cinematic sequences</p>
-          </div>
-          <div className="flex gap-3 items-center">
-            <div className="flex items-center bg-surface-container-high rounded-full px-4 py-2 gap-2 text-sm border border-outline-variant/10">
-              <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
-              <span className="text-on-surface-variant font-medium uppercase tracking-wider text-[10px]">Real-time Sync</span>
-            </div>
+            <h1 className="text-4xl font-bold tracking-tight text-on-surface">Storyboard</h1>
+            <p className="text-on-surface-variant text-sm mt-1">Organizando sequências cinematográficas</p>
           </div>
         </div>
 
@@ -149,7 +146,7 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
           <div className="flex-1 flex items-center justify-center">
             <div className="flex flex-col items-center gap-4 text-on-surface-variant">
               <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-              <span className="text-sm font-medium">Loading scenes...</span>
+              <span className="text-sm font-medium">Carregando cenas...</span>
             </div>
           </div>
         ) : (
@@ -162,7 +159,7 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
                     <KanbanColumn
                       column={column}
                       cardCount={columnCards.length}
-                      onDelete={() => deleteColumn(column.id)}
+                      onDelete={() => { if (confirm('Tem certeza que deseja excluir esta cena?')) deleteColumn(column.id); }}
                       onAddCard={() => handleAddCard(column.id)}
                     >
                       {columnCards.map(card => (
@@ -185,17 +182,17 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
                   <input
                     value={newColumnName}
                     onChange={e => setNewColumnName(e.target.value)}
-                    placeholder="Scene name..."
+                    placeholder="Nome da cena..."
                     autoFocus
                     onKeyDown={e => e.key === 'Enter' && handleAddColumn()}
                     className="w-full h-12 bg-surface-container-lowest text-white px-5 rounded-xl border-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-zinc-700"
                   />
                   <div className="flex gap-2">
                     <button onClick={handleAddColumn} className="flex-1 bg-primary text-on-primary py-2 rounded-xl font-semibold text-sm active:scale-95 transition-transform">
-                      Add
+                      Adicionar
                     </button>
                     <button onClick={() => { setShowAddColumn(false); setNewColumnName(''); }} className="flex-1 bg-surface-container-high text-on-surface-variant py-2 rounded-xl text-sm hover:bg-surface-container-highest transition-colors">
-                      Cancel
+                      Cancelar
                     </button>
                   </div>
                 </div>
@@ -205,39 +202,13 @@ export default function Board({ project, onBack, userEmail, userId, onSignOut }:
                   className="flex-none w-72 py-4 border-2 border-dashed border-outline-variant/20 rounded-2xl flex flex-col items-center justify-center gap-2 text-on-surface-variant hover:bg-surface-container-low/50 hover:border-primary/30 transition-colors group h-fit"
                 >
                   <span className="material-symbols-outlined group-hover:text-primary transition-colors">add_circle</span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest">Add Scene Column</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Adicionar Coluna de Cena</span>
                 </button>
               )}
             </div>
           </DndContext>
         )}
       </main>
-
-      {/* ===== Floating UI Panels ===== */}
-      <div className="fixed right-8 bottom-8 flex flex-col gap-4 z-50">
-        <button className="w-14 h-14 bg-primary text-on-primary rounded-full shadow-glow-primary flex items-center justify-center hover:scale-110 active:scale-95 transition-transform group">
-          <span className="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-500">auto_fix_high</span>
-        </button>
-        <div className="bg-surface-container-highest/80 backdrop-blur-xl border border-outline-variant/30 rounded-2xl p-4 w-64 shadow-2xl">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="material-symbols-outlined text-tertiary">analytics</span>
-            <span className="text-sm font-bold">Scene Timeline Stats</span>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center text-[10px]">
-              <span className="text-on-surface-variant uppercase tracking-tighter">Total Scenes</span>
-              <span className="text-zinc-200">{columns.length}</span>
-            </div>
-            <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-gradient-to-r from-primary to-tertiary h-full transition-all duration-500" style={{ width: `${Math.min(100, columns.length * 15)}%` }} />
-            </div>
-            <div className="flex justify-between items-center text-[10px]">
-              <span className="text-on-surface-variant uppercase tracking-tighter">Total Cards</span>
-              <span className="text-zinc-200">{columns.reduce((sum, col) => sum + getColumnCards(col.id).length, 0)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

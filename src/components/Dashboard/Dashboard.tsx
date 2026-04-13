@@ -21,11 +21,13 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
   const [newDesc, setNewDesc] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [saving, setSaving] = useState(false);
+  const [createError, setCreateError] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleCreate = async () => {
     if (!newName.trim() || saving) return;
     setSaving(true);
+    setCreateError('');
     try {
       const project = await createProject(newName, newDesc, selectedTemplate || undefined);
       if (project) {
@@ -34,9 +36,12 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
         setNewDesc('');
         setSelectedTemplate('');
         onSelectProject(project);
+      } else {
+        setCreateError('Não foi possível criar o projeto. Verifique o console para mais detalhes.');
       }
-    } catch (err) {
-      console.error('[Dashboard] Error creating project:', err);
+    } catch (err: any) {
+      console.error('[Dashboard] Erro ao criar projeto:', err);
+      setCreateError(err.message || 'Erro inesperado ao criar o projeto.');
     } finally {
       setSaving(false);
     }
@@ -60,9 +65,9 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
 
   const getStatusColor = (index: number) => {
     const statuses = [
-      { label: 'In Progress', classes: 'bg-primary/20 text-primary' },
-      { label: 'Reviewing', classes: 'bg-secondary/20 text-secondary' },
-      { label: 'Archived', classes: 'bg-tertiary/20 text-tertiary' },
+      { label: 'Em Andamento', classes: 'bg-primary/20 text-primary' },
+      { label: 'Em Revisão', classes: 'bg-secondary/20 text-secondary' },
+      { label: 'Arquivado', classes: 'bg-tertiary/20 text-tertiary' },
     ];
     return statuses[index % statuses.length];
   };
@@ -72,24 +77,23 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    if (diffHours < 1) return 'Just now';
-    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffHours < 1) return 'Agora mesmo';
+    if (diffHours < 24) return `${diffHours}h atrás`;
     const diffDays = Math.floor(diffHours / 24);
-    if (diffDays < 7) return `${diffDays}d ago`;
-    return date.toLocaleDateString();
+    if (diffDays < 7) return `${diffDays}d atrás`;
+    return date.toLocaleDateString('pt-BR');
   };
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
       {/* Sidebar */}
-      <Sidebar activeView="projects" />
+      <Sidebar activeView="projects" onSignOut={onSignOut} userEmail={userEmail} />
 
       <div className="flex flex-col flex-1 relative overflow-hidden">
         {/* TopBar */}
         <TopBar
           userEmail={userEmail}
           onSignOut={onSignOut}
-          activeTab="projects"
         />
 
         {/* ===== Main Content ===== */}
@@ -98,8 +102,8 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
             {/* Page Header */}
             <div className="flex justify-between items-end mb-12">
               <div>
-                <h2 className="text-4xl font-semibold tracking-tighter mb-2">Projects</h2>
-                <p className="text-on-surface-variant text-lg leading-relaxed">Manage and oversee your production pipeline.</p>
+                <h2 className="text-4xl font-semibold tracking-tighter mb-2">Projetos</h2>
+                <p className="text-on-surface-variant text-lg leading-relaxed">Gerencie e acompanhe seu pipeline de produção.</p>
               </div>
               <div className="flex gap-3">
                 <button
@@ -107,14 +111,14 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
                   className="bg-surface-container-high text-on-surface-variant px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-surface-container-highest transition-all ghost-border"
                 >
                   <span className="material-symbols-outlined text-sm">upload_file</span>
-                  <span>Import JSON</span>
+                  <span>Importar JSON</span>
                 </button>
                 <button
                   onClick={() => setShowNewModal(true)}
                   className="bg-primary text-on-primary-container px-8 py-3 rounded-full font-semibold flex items-center gap-2 shadow-lg shadow-primary/10 hover:brightness-110 active:scale-95 transition-all"
                 >
                   <span className="material-symbols-outlined">add</span>
-                  <span>Create New Project</span>
+                  <span>Novo Projeto</span>
                 </button>
               </div>
             </div>
@@ -124,7 +128,7 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
               <div className="flex items-center justify-center py-32">
                 <div className="flex flex-col items-center gap-4 text-on-surface-variant">
                   <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                  <span className="text-sm font-medium">Loading projects...</span>
+                  <span className="text-sm font-medium">Carregando projetos...</span>
                 </div>
               </div>
             ) : (
@@ -144,7 +148,7 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
                         <div className="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent opacity-60" />
                         {/* Delete button */}
                         <button
-                          onClick={(e) => { e.stopPropagation(); deleteProject(project.id); }}
+                          onClick={(e) => { e.stopPropagation(); if (confirm('Tem certeza que deseja excluir este projeto?')) deleteProject(project.id); }}
                           className="absolute top-4 right-4 p-2 glass-panel rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <span className="material-symbols-outlined text-sm">delete</span>
@@ -184,7 +188,7 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
                     <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
                       <span className="material-symbols-outlined text-2xl">add</span>
                     </div>
-                    <span className="font-medium">New Production</span>
+                    <span className="font-medium">Nova Produção</span>
                   </div>
                 </div>
               </div>
@@ -197,11 +201,7 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
       <nav className="md:hidden fixed bottom-0 left-0 right-0 glass-panel border-t border-white/5 py-3 px-6 flex justify-around items-center z-50">
         <button className="flex flex-col items-center gap-1 text-primary">
           <span className="material-symbols-outlined">grid_view</span>
-          <span className="text-[10px] font-medium">Projects</span>
-        </button>
-        <button className="flex flex-col items-center gap-1 text-gray-500">
-          <span className="material-symbols-outlined">auto_awesome_motion</span>
-          <span className="text-[10px] font-medium">Studio</span>
+          <span className="text-[10px] font-medium">Projetos</span>
         </button>
         <div className="relative -top-6">
           <button
@@ -211,13 +211,9 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
             <span className="material-symbols-outlined">add</span>
           </button>
         </div>
-        <button className="flex flex-col items-center gap-1 text-gray-500">
-          <span className="material-symbols-outlined">video_library</span>
-          <span className="text-[10px] font-medium">Library</span>
-        </button>
-        <button className="flex flex-col items-center gap-1 text-gray-500">
-          <span className="material-symbols-outlined">person</span>
-          <span className="text-[10px] font-medium">Profile</span>
+        <button onClick={onSignOut} className="flex flex-col items-center gap-1 text-gray-500">
+          <span className="material-symbols-outlined">logout</span>
+          <span className="text-[10px] font-medium">Sair</span>
         </button>
       </nav>
 
@@ -226,26 +222,33 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setShowNewModal(false)}>
           <div className="w-full max-w-lg glass-effect rounded-2xl ghost-border shadow-deep p-8 relative overflow-hidden" onClick={e => e.stopPropagation()}>
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-            <h2 className="text-2xl font-semibold tracking-tight mb-2">New Project</h2>
-            <p className="text-on-surface-variant text-sm mb-8">Create a project and choose a template for the columns.</p>
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">Novo Projeto</h2>
+            <p className="text-on-surface-variant text-sm mb-8">Crie um projeto e escolha um template para as colunas.</p>
+
+            {createError && (
+              <div className="px-4 py-3 rounded-xl bg-error/10 border border-error/20 text-error text-sm mb-4">
+                {createError}
+              </div>
+            )}
 
             <div className="space-y-5">
               <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant ml-4">Project Name</label>
+                <label className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant ml-4">Nome do Projeto</label>
                 <input
                   value={newName}
                   onChange={e => setNewName(e.target.value)}
-                  placeholder="Ex: Institucional Video"
+                  placeholder="Ex: Vídeo Institucional"
                   autoFocus
+                  onKeyDown={e => e.key === 'Enter' && handleCreate()}
                   className="w-full h-12 bg-surface-container-lowest text-white px-6 rounded-full border-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-zinc-700"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant ml-4">Description (optional)</label>
+                <label className="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant ml-4">Descrição (opcional)</label>
                 <input
                   value={newDesc}
                   onChange={e => setNewDesc(e.target.value)}
-                  placeholder="Brief project description"
+                  placeholder="Breve descrição do projeto"
                   className="w-full h-12 bg-surface-container-lowest text-white px-6 rounded-full border-none focus:ring-1 focus:ring-primary/40 transition-all placeholder:text-zinc-700"
                 />
               </div>
@@ -256,7 +259,7 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
                   onChange={e => setSelectedTemplate(e.target.value)}
                   className="w-full h-12 bg-surface-container-lowest text-white px-6 rounded-full border-none focus:ring-1 focus:ring-primary/40 transition-all appearance-none cursor-pointer"
                 >
-                  <option value="">No template (empty)</option>
+                  <option value="">Sem template (vazio)</option>
                   {templates.map(t => (
                     <option key={t.id} value={t.id}>{t.name} — {t.description}</option>
                   ))}
@@ -265,15 +268,15 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
             </div>
 
             <div className="flex justify-end gap-3 mt-8">
-              <button onClick={() => setShowNewModal(false)} disabled={saving} className="px-6 py-3 text-on-surface-variant hover:text-white rounded-full transition-colors font-medium">
-                Cancel
+              <button onClick={() => { setShowNewModal(false); setCreateError(''); }} disabled={saving} className="px-6 py-3 text-on-surface-variant hover:text-white rounded-full transition-colors font-medium">
+                Cancelar
               </button>
               <button
                 onClick={handleCreate}
                 disabled={saving}
                 className="bg-primary text-on-primary-container px-8 py-3 rounded-full font-semibold hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
               >
-                {saving ? 'Creating...' : 'Create Project'}
+                {saving ? 'Criando...' : 'Criar Projeto'}
               </button>
             </div>
           </div>
@@ -285,17 +288,17 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setShowImportModal(false)}>
           <div className="w-full max-w-lg glass-effect rounded-2xl ghost-border shadow-deep p-8 relative overflow-hidden" onClick={e => e.stopPropagation()}>
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary/40 to-transparent" />
-            <h2 className="text-2xl font-semibold tracking-tight mb-2">Import Script (JSON)</h2>
-            <p className="text-on-surface-variant text-sm mb-6">Select a <code className="text-primary">.json</code> file with the script format. Each scene becomes a Kanban column.</p>
+            <h2 className="text-2xl font-semibold tracking-tight mb-2">Importar Roteiro (JSON)</h2>
+            <p className="text-on-surface-variant text-sm mb-6">Selecione um arquivo <code className="text-primary">.json</code> com o formato do roteiro. Cada cena vira uma coluna do Kanban.</p>
 
             <pre className="bg-surface-container-lowest p-4 rounded-xl text-xs text-on-surface-variant leading-relaxed mb-6 overflow-auto max-h-48 ghost-border">
 {`{
-  "project_name": "Project Name",
+  "project_name": "Nome do Projeto",
   "scenes": [
     {
-      "name": "Scene 1 - Opening",
-      "script": "Script text...",
-      "notes": "Notes (optional)"
+      "name": "Cena 1 - Abertura",
+      "script": "Texto do roteiro...",
+      "notes": "Notas (opcional)"
     }
   ]
 }`}
@@ -305,7 +308,7 @@ export default function Dashboard({ userId, onSelectProject, userEmail, onSignOu
 
             <div className="flex justify-end mt-6">
               <button onClick={() => setShowImportModal(false)} className="px-6 py-3 text-on-surface-variant hover:text-white rounded-full transition-colors font-medium">
-                Cancel
+                Cancelar
               </button>
             </div>
           </div>

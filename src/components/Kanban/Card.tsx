@@ -75,12 +75,12 @@ export default function KanbanCard({ card, mouseX, mouseY, onDelete }: CardProps
           ) : card.status === 'processing' ? (
             <div className="flex flex-col items-center gap-2 text-on-surface-variant">
               <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-              <span className="text-[10px] font-bold uppercase tracking-widest animate-pulse">Generating...</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest animate-pulse">Gerando...</span>
             </div>
           ) : card.status === 'failed' ? (
             <div className="flex flex-col items-center gap-1 text-error">
               <span className="material-symbols-outlined text-2xl">error</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest">Failed</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest">Falhou</span>
             </div>
           ) : (
             <span className="material-symbols-outlined text-zinc-600 text-4xl">movie</span>
@@ -112,9 +112,9 @@ export default function KanbanCard({ card, mouseX, mouseY, onDelete }: CardProps
           )}
           <button
             onClick={(e) => { e.stopPropagation(); onDelete(); }}
-            className="ml-auto p-1 text-zinc-600 hover:text-error rounded transition-colors opacity-0 group-hover:opacity-100"
+            className="ml-auto p-1 text-zinc-600 hover:text-error rounded transition-colors"
           >
-            <span className="material-symbols-outlined text-sm">more_horiz</span>
+            <span className="material-symbols-outlined text-sm">delete</span>
           </button>
         </div>
       </motion.div>
@@ -127,13 +127,13 @@ export default function KanbanCard({ card, mouseX, mouseY, onDelete }: CardProps
             <video src={card.video_url} controls autoPlay className="w-full rounded-xl bg-black max-h-[60vh]" />
             <div className="mt-4 space-y-1">
               <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Prompt:</strong> {card.prompt}</p>
-              {card.model_name && <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Model:</strong> {card.model_name}</p>}
-              {card.aspect_ratio && <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Ratio:</strong> {card.aspect_ratio}</p>}
-              {card.duration && <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Duration:</strong> {card.duration}</p>}
+              {card.model_name && <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Modelo:</strong> {card.model_name}</p>}
+              {card.aspect_ratio && <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Proporção:</strong> {card.aspect_ratio}</p>}
+              {card.duration && <p className="text-sm text-on-surface-variant"><strong className="text-on-surface">Duração:</strong> {card.duration}</p>}
             </div>
             <div className="flex justify-end mt-4">
               <button onClick={() => setShowVideo(false)} className="px-6 py-2 text-on-surface-variant hover:text-white rounded-full transition-colors font-medium">
-                Close
+                Fechar
               </button>
             </div>
           </div>
